@@ -1,0 +1,19 @@
+{
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": true
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "indent": ["error", 2],
+    "require-jsdoc": "off"
+  },
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ]
+}
