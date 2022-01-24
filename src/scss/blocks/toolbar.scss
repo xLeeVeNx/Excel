@@ -1,0 +1,24 @@
+.toolbar {
+  padding: 5px 15px;
+
+  border-bottom: 1px solid $border-color;
+
+  &__buttons {
+    @include flex-align(flex-start, center)
+  }
+
+  &__button {
+    @extend %button-reset;
+    @include button(#137333);
+
+    width: 35px;
+    height: 35px;
+
+    svg {
+      width: 29px;
+      height: 30px;
+
+      fill: #5F6368;
+    }
+  }
+}
