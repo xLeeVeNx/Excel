@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="favicon.ico">
+    <title>Excel</title>
+</head>
+<body>
+<div id="app">
+    <div class="excel">
+        <div class="header">
+            <div class="header__box">
+                <button class="header__button-icon">
+                    <svg class="header__icon">
+                        <use xlink:href="#excel"></use>
+                    </svg>
+                </button>
+                <label class="header__label">
+                    <input class="header__input" type="text" value="Новая таблица">
+                </label>
+            </div>
+            <div class="header__buttons">
+                <button class="header__button">
+                    <svg class="header__delete">
+                        <use xlink:href="#delete"></use>
+                    </svg>
+                </button>
+                <button class="header__button">
+                    <svg class="header__exit-back">
+                        <use xlink:href="#exit-back"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <div class="toolbar__buttons">
+                <button class="toolbar__button">
+                    <svg class="toolbar__button">
+                        <use xlink:href="#format-left"></use>
+                    </svg>
+                </button>
+                <button class="toolbar__button">
+                    <svg class="toolbar__button">
+                        <use xlink:href="#format-center"></use>
+                    </svg>
+                </button>
+                <button class="toolbar__button">
+                    <svg class="toolbar__button">
+                        <use xlink:href="#format-right"></use>
+                    </svg>
+                </button>
+                <button class="toolbar__button">
+                    <svg class="toolbar__button">
+                        <use xlink:href="#format-bold"></use>
+                    </svg>
+                </button>
+                <button class="toolbar__button">
+                    <svg class="toolbar__button">
+                        <use xlink:href="#format-italic"></use>
+                    </svg>
+                </button>
+                <button class="toolbar__button">
+                    <svg class="toolbar__button">
+                        <use xlink:href="#format-underlined"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="formula">
+            <div class="formula__fx">
+                <svg class="formula__fx-icon">
+                    <use xlink:href="#fx"></use>
+                </svg>
+            </div>
+            <div class="formula__input" contenteditable spellcheck="false"></div>
+        </div>
+
+        <div class="table">
+            <div class="table__row">
+                <div class="table__row-number"></div>
+                <div class="table__row-container">
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                    <div class="table__row-letter">A</div>
+                    <div class="table__row-letter">B</div>
+                    <div class="table__row-letter">C</div>
+                </div>
+            </div>
+
+            <div class="table__row">
+                <div class="table__row-number">1</div>
+                <div class="table__row-container">
+                    <div class="table__row-cell selected" contenteditable>1</div>
+                    <div class="table__row-cell" contenteditable>2</div>
+                    <div class="table__row-cell" contenteditable>3</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
