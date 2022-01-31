@@ -1,4 +1,6 @@
 .table {
+  padding-bottom: 1px;
+
   color: #5F6368;
 
   overflow-x: auto;
@@ -24,7 +26,8 @@
 
   &__row-number {
     @include flex-align(center, center);
-    width: $row-number-width;
+    min-width: $row-number-width;
+    max-width: $row-number-width;
     height: 100%;
 
     background-color: #F8F9FA;
