@@ -1,7 +1,9 @@
 {
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
-    "allowImportExportEverywhere": true
+    "allowImportExportEverywhere": true,
+    "requireConfigFile": false
   },
   "env": {
     "es6": true,
@@ -9,8 +11,12 @@
     "node": true
   },
   "rules": {
-    "indent": ["error", 2],
-    "require-jsdoc": "off"
+    "indent": [
+      "error",
+      2
+    ],
+    "require-jsdoc": "off",
+    "operator-linebreak": "off"
   },
   "extends": [
     "eslint:recommended",
