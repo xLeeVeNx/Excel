@@ -1,8 +1,8 @@
 .formula {
-  padding: 5px 0px;
+  padding: 5px 0;
 
   display: grid;
-  grid-template-columns: $row-number-width 1fr;
+  grid-template-columns: 46px 1fr;
   align-items: center;
 
   border-bottom: 1px solid $border-color;
@@ -13,7 +13,7 @@
     padding-left: 11px;
     margin-bottom: -5px;
 
-    width: $row-number-width;
+    width: 46px;
     height: 30px;
 
     &::after {

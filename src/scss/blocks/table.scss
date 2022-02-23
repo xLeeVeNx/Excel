@@ -3,6 +3,7 @@
 
   color: #5F6368;
 
+  overflow: hidden;
   overflow-x: auto;
 
   &::-webkit-scrollbar {
@@ -22,18 +23,28 @@
     display: flex;
     min-height: 20px;
     height: $row-height;
+
+    &:first-child {
+      .vertical-resize {
+        display: none !important;
+      }
+    }
   }
 
   &__row-number {
+    position: relative;
+
     @include flex-align(center, center);
-    min-width: $row-number-width;
-    max-width: $row-number-width;
+    min-width: 46px;
+    max-width: 46px;
     height: 100%;
 
     background-color: #F8F9FA;
 
     border: 1px solid $border-color;
     border-top: none;
+
+    user-select: none;
   }
 
   &__row-container {
@@ -41,6 +52,8 @@
   }
 
   &__row-letter {
+    position: relative;
+
     @include flex-align(center, center);
     min-width: $row-number-width;
     width: $cell-width;
@@ -51,6 +64,8 @@
     border: 1px solid $border-color;
     border-top: none;
     border-left: none;
+
+    user-select: none;
   }
 
   &__row-cell {

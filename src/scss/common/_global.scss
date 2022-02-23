@@ -1,6 +1,8 @@
 body {
   @extend %roboto-400;
   font-size: 12px;
+
+  overflow-x: hidden;
 }
 
 .excel {
@@ -17,3 +19,80 @@ body {
   max-width: 1140px;
   width: 100%;
 }
+
+.horizontal-resize,
+.vertical-resize {
+  position: absolute;
+  right: -1px;
+  z-index: 1;
+
+  background-color: #4D90FE;
+  opacity: 0;
+
+  &.active {
+    display: block !important;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+
+    display: none;
+
+    background-color: #4D90FE;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 1;
+
+    &::after {
+      display: block;
+    }
+  }
+}
+
+.horizontal-resize {
+  width: 5px;
+  height: calc(100% + 2px);
+
+  &::after {
+    top: 100%;
+    left: 50%;
+
+    height: 10000px;
+    width: 2px;
+
+    transform: translateX(-50%);
+  }
+
+  &:hover {
+    cursor: e-resize;
+  }
+}
+
+.vertical-resize {
+  bottom: -1px;
+
+  width: calc(100% + 2px);
+  height: 5px;
+
+  &::after {
+    top: 50%;
+    left: 100%;
+
+    width: 3120px;
+    height: 2px;
+
+    transform: translateY(-50%);
+  }
+
+  &:hover {
+    cursor: n-resize;
+  }
+}
+
