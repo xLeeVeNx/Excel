@@ -7,22 +7,28 @@ const fromCharCode = (_, index) => {
   return String.fromCharCode(LETTERS_CODES.A + index);
 };
 
-const createRowCell = () => {
+const createRowCell = (_, index) => {
   return `
-    <div class="table__row-cell" contenteditable></div>
+    <div class="table__row-cell" data-number="${index}" contenteditable></div>
   `;
 };
 
-const createRowLetter = (letter = '') => {
+const createRowLetter = (letter = '', index) => {
   return `
-    <div class="table__row-letter">${letter}</div>
+    <div class="table__row-letter" data-type="resizable" data-number="${index}">
+        <span>${letter}</span>
+        <div class="horizontal-resize" data-resize="horizontal"></div>
+    </div>
   `;
 };
 
 const createRow = (number, content = '') => {
   return `
-      <div class="table__row">
-        <div class="table__row-number">${number && number}</div>
+      <div class="table__row" ${number && 'data-type="resizable"'}>
+        <div class="table__row-number">
+            <span>${number && number}</span>
+            <div class="vertical-resize" data-resize="vertical"></div>
+        </div>
         <div class="table__row-container">${content}</div>
       </div>
   `;

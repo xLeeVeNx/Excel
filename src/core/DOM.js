@@ -49,6 +49,42 @@ class DOM {
       );
     });
   }
+
+  closest(selector) {
+    return $(this.nativeElement.closest(selector));
+  }
+
+  getCoords() {
+    return this.nativeElement.getBoundingClientRect();
+  }
+
+  findAll(selector) {
+    return this.nativeElement.querySelectorAll(selector);
+  }
+
+  css(styles) {
+    for (const key in styles) {
+      if (Object.prototype.hasOwnProperty.call(styles, key)) {
+        this.nativeElement.style[key] = styles[key];
+      }
+    }
+
+    return $(this.nativeElement);
+  }
+
+  addClass(className = '') {
+    this.nativeElement.classList.add(className);
+    return this;
+  }
+
+  removeClass(className = '') {
+    this.nativeElement.classList.remove(className);
+    return this;
+  }
+
+  get data() {
+    return this.nativeElement.dataset;
+  }
 }
 
 export function $(selector) {
