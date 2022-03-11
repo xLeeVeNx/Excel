@@ -7,10 +7,20 @@ const fromCharCode = (_, index) => {
   return String.fromCharCode(LETTERS_CODES.A + index);
 };
 
-const createRowCell = (_, index) => {
-  return `
-    <div class="table__row-cell" data-number="${index}" contenteditable></div>
-  `;
+const createRowCell = (rowNumber) => {
+  return (_, index) => {
+    const letter = fromCharCode('', index);
+
+    return `
+      <div 
+        class="table__row-cell" 
+        data-number="${index}"
+        data-id="${letter}:${rowNumber}"
+        data-type="cell"
+        contenteditable> 
+      </div>
+    `;
+  };
 };
 
 const createRowLetter = (letter = '', index) => {
@@ -42,15 +52,17 @@ export const createTable = (rowsCount = 30) => {
     .map(fromCharCode)
     .map(createRowLetter)
     .join('');
-  const rowCells = new Array(lettersCount)
-    .fill('')
-    .map(createRowCell)
-    .join('');
+  const rowCells = (rowNumber) => {
+    return new Array(lettersCount)
+      .fill('')
+      .map(createRowCell(rowNumber))
+      .join('');
+  };
 
   tableLayout.push(createRow('', rowLetters));
 
   for (let index = 1; index <= rowsCount; index++) {
-    tableLayout.push(createRow(index, rowCells));
+    tableLayout.push(createRow(index, rowCells(index)));
   }
 
   return tableLayout.join('');

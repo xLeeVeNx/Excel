@@ -1,12 +1,13 @@
 import {capitalize} from '@/core/utils';
 
 export class DOMListener {
-  constructor($root, listeners = []) {
+  constructor($root, name, listeners = []) {
     if (!$root) {
       throw new Error('$root doesn\'t provided for DOMListener.js');
     }
 
     this.$root = $root;
+    this.name = name;
     this.listeners = listeners;
   }
 

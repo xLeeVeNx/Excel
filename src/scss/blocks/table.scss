@@ -71,9 +71,13 @@
   &__row-cell {
     padding: 5px;
 
+    display: flex;
+    align-items: center;
     min-width: $row-number-width;
     width: $cell-width;
     height: 100%;
+
+    line-height: 1;
 
     color: #000000;
 
@@ -83,6 +87,7 @@
 
     white-space: nowrap;
     outline: none;
+    cursor: default;
 
     &.selected {
       border: 2px solid #1A73E8;

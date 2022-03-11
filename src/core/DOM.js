@@ -17,6 +17,16 @@ class DOM {
     return this.nativeElement.outerHTML.trim();
   }
 
+  text(text) {
+    if (typeof text === 'string') {
+      this.nativeElement.textContent = text;
+
+      return this;
+    }
+
+    return this.nativeElement.textContent;
+  }
+
   clear() {
     this.nativeElement.html('');
 
@@ -58,6 +68,10 @@ class DOM {
     return this.nativeElement.getBoundingClientRect();
   }
 
+  find(selector) {
+    return $(this.nativeElement.querySelector(selector));
+  }
+
   findAll(selector) {
     return this.nativeElement.querySelectorAll(selector);
   }
@@ -80,6 +94,28 @@ class DOM {
   removeClass(className = '') {
     this.nativeElement.classList.remove(className);
     return this;
+  }
+
+  hasClass(className = '') {
+    return this.nativeElement.classList.contains(className);
+  }
+
+  focus() {
+    this.nativeElement.focus();
+    return this;
+  }
+
+  id(parse = false) {
+    if (parse) {
+      const parsed = this.id().split(':'); // ['A', '1']; ['C', '8']; ...
+
+      return {
+        column: parsed[0].charCodeAt(0), // 65; 68; ...
+        row: +parsed[1],
+      };
+    }
+
+    return this.data.id;
   }
 
   get data() {
