@@ -3,21 +3,11 @@ import {ExcelComponent} from '@/core/ExcelComponent';
 export class Header extends ExcelComponent {
   static className = 'header';
 
-  constructor($root) {
+  constructor($root, options = {}) {
     super($root, {
       name: 'Header',
-      listeners: ['input', 'click'],
+      ...options,
     });
-  }
-
-  onInput(event) {
-    console.log('Header', event);
-    console.log(this.$root);
-  }
-
-  onClick(event) {
-    console.log('Header', event);
-    console.log(this.$root);
   }
 
   toHTML() {
