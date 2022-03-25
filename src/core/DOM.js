@@ -18,7 +18,7 @@ class DOM {
   }
 
   text(text) {
-    if (typeof text === 'string') {
+    if (typeof text !== 'undefined') {
       this.nativeElement.textContent = text;
 
       return this;
@@ -86,6 +86,13 @@ class DOM {
     return $(this.nativeElement);
   }
 
+  getStyles(styles = []) {
+    return styles.reduce((acc, style) => {
+      acc[style] = this.nativeElement.style[style];
+      return acc;
+    }, {});
+  }
+
   addClass(className = '') {
     this.nativeElement.classList.add(className);
     return this;
@@ -98,6 +105,15 @@ class DOM {
 
   hasClass(className = '') {
     return this.nativeElement.classList.contains(className);
+  }
+
+  attr(name, value) {
+    if (value) {
+      this.nativeElement.setAttribute(name, value);
+      return this;
+    }
+
+    return this.nativeElement.getAttribute(name);
   }
 
   focus() {

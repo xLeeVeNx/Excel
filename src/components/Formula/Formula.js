@@ -8,20 +8,25 @@ export class Formula extends ExcelComponent {
     super($root, {
       name: 'Formula',
       listeners: ['input', 'keydown'],
+      subscribes: ['currentText', 'rowState', 'columnState'],
       ...options,
     });
   }
 
   onInput(event) {
-    this.$dispatch('formula:input', $(event.target).text());
+    this.$emit('formula:input', $(event.target).text());
   }
 
   onKeydown(event) {
     const keys = ['Enter', 'Tab'];
     if (keys.includes(event.key)) {
       event.preventDefault();
-      this.$dispatch('formula:entered');
+      this.$emit('formula:entered');
     }
+  }
+
+  storeChanged(changes) {
+    this.$formulaInput.text(changes.currentText);
   }
 
   toHTML() {
@@ -42,14 +47,11 @@ export class Formula extends ExcelComponent {
 
   init() {
     super.init();
-    const $formulaInput = this.$root.find('#formula-input');
 
-    this.$on('table:input', (text) => {
-      $formulaInput.text(text);
-    });
+    this.$formulaInput = this.$root.find('#formula-input');
 
     this.$on('table:select', (text) => {
-      $formulaInput.text(text);
+      this.$formulaInput.text(text);
     });
   }
 }

@@ -1,4 +1,8 @@
 import {ExcelComponent} from '@/core/ExcelComponent';
+import {changeTitleAC} from '@/redux/actionCreators';
+import {createHeader} from '@/components/Header/headerRendering';
+import {$} from '@/core/DOM';
+import {debounce} from '@/core/utils';
 
 export class Header extends ExcelComponent {
   static className = 'header';
@@ -6,34 +10,20 @@ export class Header extends ExcelComponent {
   constructor($root, options = {}) {
     super($root, {
       name: 'Header',
+      listeners: ['input'],
       ...options,
     });
   }
 
+  prepare() {
+    this.onInput = debounce(this.onInput, 300);
+  }
+
+  onInput(event) {
+    this.$dispatch(changeTitleAC(event.target.value));
+  }
+
   toHTML() {
-    return `
-        <div class="header__box">
-            <button class="header__button-icon">
-                <svg class="header__icon">
-                    <use xlink:href="#excel"></use>
-                </svg>
-            </button>
-            <label class="header__label">
-                <input class="header__input" type="text" value="Новая таблица">
-            </label>
-        </div>
-        <div class="header__buttons">
-            <button class="header__button">
-                <svg class="header__delete">
-                    <use xlink:href="#delete"></use>
-                </svg>
-            </button>
-            <button class="header__button">
-                <svg class="header__exit-back">
-                    <use xlink:href="#exit-back"></use>
-                </svg>
-            </button>
-        </div>
-    `;
+    return createHeader(this.store.getState());
   }
 }

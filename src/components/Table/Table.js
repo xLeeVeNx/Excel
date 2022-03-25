@@ -9,11 +9,17 @@ import {
   isSelect,
 } from '@/components/Table/tableFunctions';
 import {TableSelection} from '@/components/Table/TableSelection';
+import {
+  changeStylesAC,
+  changeTextAC, saveStylesAC,
+  tableResizeAC,
+} from '@/redux/actionCreators';
+import {defaultStyles} from '@/constants';
 
 export class Table extends ExcelComponent {
   static className = 'table';
   static initCellId = '[data-id="A:1"]';
-  static tableHeight = 25;
+  static tableHeight = 100;
 
   constructor($root, options = {}) {
     super($root, {
@@ -34,27 +40,47 @@ export class Table extends ExcelComponent {
 
     this.$on('formula:input', (text) => {
       this.selection.$current.text(text);
+      this.updateTextInStore(text);
     });
 
     this.$on('formula:entered', () => {
       this.selection.$current.focus();
     });
+
+    this.$on('toolbar:changeStyle', (value) => {
+      this.selection.changeStyle(value);
+      this.$dispatch(saveStylesAC({
+        value,
+        ids: this.selection.selectedIds,
+      }));
+    });
   }
 
   toHTML() {
-    return createTable(Table.tableHeight);
+    return createTable(Table.tableHeight, this.store.getState());
   }
 
   selectCell($cell) {
     this.selection.select($cell);
-    this.$dispatch('table:select', $cell.text());
+    this.$emit('table:select', $cell.text());
+    const styles = $cell.getStyles(Object.keys(defaultStyles));
+    console.log('Styles to dispatch', styles);
+    this.$dispatch(changeStylesAC(styles));
   }
 
-  onMousedown(event) {
+  updateTextInStore(value) {
+    this.$dispatch(changeTextAC({
+      value,
+      id: this.selection.$current.id(),
+    }));
+  }
+
+  async onMousedown(event) {
     const $target = $(event.target);
 
     if (isResize($target)) {
-      tableResize(event, this.$root, $target);
+      const data = await tableResize(event, this.$root, $target);
+      this.$dispatch(tableResizeAC(data));
     }
 
     if (isSelect($target)) {
@@ -89,6 +115,6 @@ export class Table extends ExcelComponent {
   }
 
   onInput(event) {
-    this.$dispatch('table:input', $(event.target).text());
+    this.updateTextInStore(event.target.textContent);
   }
 }
