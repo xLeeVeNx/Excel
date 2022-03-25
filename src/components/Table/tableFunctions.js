@@ -50,3 +50,7 @@ export const getNextSelector = (key, {column, row}) => {
 
   return `[data-id="${fromCharCode(column)}:${row}"]`;
 };
+
+export const isResizeNotAllowed = (a, b, minValue, distance) => {
+  return a - b < minValue && distance < 0;
+};

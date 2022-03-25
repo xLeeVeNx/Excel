@@ -20,6 +20,16 @@ export class TableSelection {
     this.$cells.forEach(($cell) => $cell.addClass(TableSelection.className));
   }
 
+  changeStyle(style) {
+    this.$cells.forEach(($cell) => {
+      $cell.css(style);
+    });
+  }
+
+  get selectedIds() {
+    return this.$cells.map(($cell) => $cell.id());
+  }
+
   clear() {
     this.$cells.forEach(($cell) => $cell.removeClass(TableSelection.className));
     this.$cells = [];
